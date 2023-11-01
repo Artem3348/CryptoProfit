@@ -1,0 +1,60 @@
+<html>
+    <!-- ⛔️ restriced area -->
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://clsls.github.io/framework/src/index.css"
+        />
+        <link rel="stylesheet" href="./index.css" />
+        <script src="https://devope-teach.github.io/assets/design.js"></script>
+    </head>
+
+    <body>
+        <br />
+        <h1><b>🐸 CryptoProfit</b></h1>
+        <br />
+
+        <div id="errors"></div>
+        <br>
+
+        <label><b>start</b></label>
+        <br><br>
+        <input type="date" id="start">
+        <span id="startPrice"></span>
+        <br><br>
+
+        <label><b>end</b></label>
+        <br><br>
+        <input type="date" id="end">
+        <span id="endPrice"></span>
+        <br><br>
+
+        <label><b>coin</b></label>
+        <br><br>
+        <select id="coin">
+            <option>-</option>
+        </select>
+        <a id="coinUrl" target="_blank">
+            <img id="coinIcon">
+        </a>
+        <br><br>
+
+        <label><b>amount</b></label>
+        <br><br>
+        <input id="amount" type="number" placeholder="0.0000001">
+        <br><br>
+
+        <button>Check</button>
+        <br><br>
+
+        <div id="result" class="">
+            <h2 id="netProfit"></h2>
+            <div id="profitability"></div>
+        </div>
+    </body>
+    <!-- ⛔️ restriced area -->
+
+    <!-- ✅ safe area -->
+    <script src="../teacher/1.js" type="module"></script>
+    <!-- ✅ /safe area -->
+</html>
