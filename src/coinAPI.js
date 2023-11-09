@@ -61,7 +61,7 @@ export const coinAPI = {
         return resultList;
     },
 
-    getNames(data) {
+    getNamesList(data) {
         const resultArr = [];
     
         for (let coinData of data) {
