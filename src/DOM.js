@@ -1,5 +1,5 @@
-import { coinAPI } from '../src/coinAPI.js';
-import { render } from '../src/render.js';
+import { coinAPI } from './coinAPI.js';
+import { render } from './render.js';
 
 /**
  * nodes

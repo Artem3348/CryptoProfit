@@ -1,3 +1,3 @@
-import { app } from '../src/dom.js';
+import { app } from '../src/DOM.js';
 
 app();
