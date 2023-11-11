@@ -25,6 +25,7 @@ const $check = document.querySelector('button');
 const coinList = await coinAPI.getList();
 const coinNamesList = coinAPI.getNamesList(coinList);
 render.renderList(coinNamesList, $coin);
+setDefaultDate();
 
 /**
  * lib
@@ -78,11 +79,33 @@ function renderResultInfo(profit, profitability) {
 }
 
 function checkAmount($node) {
-    if ($node.value === 0) {
+    if ($node.value === "" || $node.value === 0) {
         $node.value = 1; 
     }
 
     return true;
+}
+
+function getCorrectFormatDate(date) {
+    date = new Date(date);
+    const result = date.getFullYear() + '-' 
+        + date.getMonth() + '-'
+        + date.getDate();
+
+    return result;
+}
+
+function setDefaultDate() {
+    const endDate = new Date().getTime();
+    const correctEndDate = getCorrectFormatDate(endDate);
+
+    const yearInMs = 1000 * 60 * 60 * 24 * 365;
+
+    const startDate = endDate - yearInMs;
+    const correctStartDate = getCorrectFormatDate(startDate);
+    
+    $start.value = correctStartDate;
+    $end.value = correctEndDate;
 }
 
 async function main() {
@@ -110,7 +133,7 @@ async function main() {
     renderResultInfo(profit, profitability);
 }
 
-export async function app() {
+export function app() {
     $check.addEventListener('click', async (event) => {
         event.preventDefault();
         await main();
