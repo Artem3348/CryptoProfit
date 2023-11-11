@@ -24,7 +24,7 @@ const $check = document.querySelector('button');
 
 const coinList = await coinAPI.getList();
 const coinNamesList = coinAPI.getNamesList(coinList);
-render.renderList(coinNamesList, $coin);
+render.list(coinNamesList, $coin);
 setDefaultDate();
 
 /**
@@ -108,6 +108,18 @@ function setDefaultDate() {
     $end.value = correctEndDate;
 }
 
+function getPrice(data, amount) {
+    const price = data.market_data.current_price.usd * amount;
+
+    return price;
+}
+  
+function getImg(data) {
+    const img = data.image.thumb;
+
+    return img;
+}
+
 async function main() {
     const startDate = $start.value.split('-').reverse().join('-');
     const endDate = $end.value.split('-').reverse().join('-');
@@ -118,14 +130,14 @@ async function main() {
 
     checkAmount($amount);
     
-    const startPrice = render.getPrice(startDateData, $amount.value);
-    const endPrice = render.getPrice(endDateData, $amount.value);
+    const startPrice = getPrice(startDateData, $amount.value);
+    const endPrice = getPrice(endDateData, $amount.value);
 
-    const img = render.getImg(endDateData);
-    render.renderImg(img, $coin.value, $coinUrl, $coinIcon);
+    const img = getImg(endDateData);
+    render.img(img, $coin.value, $coinUrl, $coinIcon);
 
-    render.renderPrice($startPrice, startPrice);
-    render.renderPrice($endPrice, endPrice);
+    render.price($startPrice, startPrice);
+    render.price($endPrice, endPrice);
 
     const profit = getNetProfit(startPrice, endPrice);
     const profitability = getProfitability(startPrice, endPrice);

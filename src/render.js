@@ -1,30 +1,18 @@
 export const render = {
-    renderList(list, $node) {
+    list(list, $node) {
         list.forEach(name => {
             const $newOption = new Option(name, name);
             $node.append($newOption);
         });
     },
     
-    getPrice(data, amount) {
-        const price = data.market_data.current_price.usd * amount;
-    
-        return price;
-    },
-      
-    getImg(data) {
-        const img = data.image.thumb;
-    
-        return img;
-    },
-    
-    renderPrice($node, price) {
+    price($node, price) {
         $node.textContent = `${price.toFixed(5)}$`;
     
         return true;
     },
     
-    renderImg(img, name, $url, $icon) {
+    img(img, name, $url, $icon) {
         if (name.includes(' ')) {
             name = name.replaceAll(' ', '-');
         }
