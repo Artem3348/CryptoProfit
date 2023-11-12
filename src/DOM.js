@@ -1,3 +1,7 @@
+/**
+ * imports
+ */
+
 import { coinAPI } from './coinAPI.js';
 import { render } from './render.js';
 
@@ -19,11 +23,31 @@ const $profitability = document.querySelector('#profitability');
 const $check = document.querySelector('button');
 
 /**
+ * data
+ */
+
+const state = {
+    price: {
+        start: '',
+        end: '',
+    },
+
+    selectedCoin: {
+        icon: '',
+        link: '',
+        name: '',
+    },
+
+    netProfit: '',
+
+    profitability: '',
+}
+
+/**
  * init
  */
 
-const coinList = await coinAPI.getList();
-const coinNamesList = coinAPI.getNamesList(coinList);
+const coinNamesList = await coinAPI.getNamesList();
 render.list(coinNamesList, $coin);
 setDefaultDate();
 
@@ -79,7 +103,7 @@ function renderResultInfo(profit, profitability) {
 }
 
 function checkAmount($node) {
-    if ($node.value === "" || $node.value === 0) {
+    if ($node.value === "" || $node.value <= 0) {
         $node.value = 1; 
     }
 

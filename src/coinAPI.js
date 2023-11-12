@@ -61,7 +61,8 @@ export const coinAPI = {
         return resultList;
     },
 
-    getNamesList(data) {
+    async getNamesList() {
+        const data = await this.getList();
         const resultArr = [];
     
         for (let coinData of data) {
