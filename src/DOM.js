@@ -3,7 +3,7 @@
  */
 
 import { coinAPI } from './coinAPI.js';
-import { render } from './render.js';
+// import { render } from './render.js';
 
 /**
  * nodes
@@ -33,10 +33,11 @@ const state = {
     },
 
     selectedCoin: {
-        icon: '',
         link: '',
-        name: '',
+        icon: '',
     },
+
+    amount: 0,
 
     netProfit: '',
 
@@ -48,12 +49,19 @@ const state = {
  */
 
 const coinNamesList = await coinAPI.getNamesList();
-render.list(coinNamesList, $coin);
+renderList(coinNamesList, $coin);
 setDefaultDate();
 
 /**
  * lib
  */
+
+function renderList(list) {
+    list.forEach(name => {
+        const $newOption = new Option(name, name);
+        $coin.append($newOption);
+    });
+}
 
 function getNetProfit(startPrice, endPrice) {
     let profit = 0;
@@ -81,19 +89,19 @@ function getProfitability(startPrice, endPrice) {
     return profitability;
 }
 
-function isIncrease(profit) {
-    if (profit.match('-')) {
+function isIncrease() {
+    if (state.profit.match('-')) {
         return false;
     }
 
     return true;
 }
 
-function renderResultInfo(profit, profitability) {
-    $netProfit.textContent = profit;
-    $profitability.textContent = profitability;
+function renderResultInfo() {
+    $netProfit.textContent = state.profit;
+    $profitability.textContent = state.profitability;
 
-    if (isIncrease(profit)) {
+    if (isIncrease()) {
         $result.className = 'success';
     } else {
         $result.className = 'failure';
@@ -102,9 +110,10 @@ function renderResultInfo(profit, profitability) {
     return true;
 }
 
-function checkAmount($node) {
-    if ($node.value === "" || $node.value <= 0) {
-        $node.value = 1; 
+function checkAmount() {
+    if (state.amount === '' || state.amount <= 0) {
+        state.amount = 1;
+        $amount.value = 1;
     }
 
     return true;
@@ -132,41 +141,85 @@ function setDefaultDate() {
     $end.value = correctEndDate;
 }
 
+function getAmount() {
+    const amount = $amount.value;
+
+    return amount;
+}
+
 function getPrice(data, amount) {
     const price = data.market_data.current_price.usd * amount;
 
     return price;
 }
   
-function getImg(data) {
-    const img = data.image.thumb;
+function getImgData(coinData) {
+    let name = coinData.name.toLowerCase();
 
-    return img;
+    if (name.includes(' ')) {
+        name = name.replaceAll(' ', '-');
+    }
+
+    const link = `https://www.coingecko.com/en/coins/${name}`;
+
+    const icon = coinData.image.thumb;
+
+    const data = { link, icon };
+
+    return data;
+}
+
+function renderStartPrice() {
+    $startPrice.textContent = `${state.price.start.toFixed(5)}`;
+
+    return true;
+}
+
+function renderEndPrice() {
+    $endPrice.textContent = `${state.price.end.toFixed(5)}`;
+
+    return true;
+}
+
+function renderImg() {
+    $coinUrl.setAttribute('href', `${state.selectedCoin.link}`);
+    $coinIcon.setAttribute('src', state.selectedCoin.icon);
+
+    return true;
 }
 
 async function main() {
     const startDate = $start.value.split('-').reverse().join('-');
     const endDate = $end.value.split('-').reverse().join('-');
 
+    const coinList = await coinAPI.getList();
+
     const coinId = coinAPI.getId($coin.value, coinList);
     const startDateData = await coinAPI.requestData(coinId, startDate);
     const endDateData = await coinAPI.requestData(coinId, endDate);
 
+    const imgData = getImgData(endDateData);
+
+    state.amount = getAmount();
+
     checkAmount($amount);
+
+    state.price.start = getPrice(startDateData, state.amount);
+    state.price.end = getPrice(endDateData, state.amount);
+
+    state.selectedCoin.icon = imgData.icon;
+    state.selectedCoin.link = imgData.link;
     
-    const startPrice = getPrice(startDateData, $amount.value);
-    const endPrice = getPrice(endDateData, $amount.value);
+    const profit = getNetProfit(state.price.start, state.price.end);
+    const profitability = getProfitability(state.price.start, state.price.end);
 
-    const img = getImg(endDateData);
-    render.img(img, $coin.value, $coinUrl, $coinIcon);
+    state.profit = profit;
+    state.profitability = profitability;
 
-    render.price($startPrice, startPrice);
-    render.price($endPrice, endPrice);
-
-    const profit = getNetProfit(startPrice, endPrice);
-    const profitability = getProfitability(startPrice, endPrice);
-
-    renderResultInfo(profit, profitability);
+    renderResultInfo();
+    renderStartPrice();
+    renderEndPrice();
+    renderImg();
 }
 
 export function app() {
