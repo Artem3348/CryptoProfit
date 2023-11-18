@@ -102,9 +102,9 @@ function renderResultInfo() {
     $profitability.textContent = state.profitability;
 
     if (isIncrease()) {
-        $result.className = 'success';
+        $result.className = 'bg-success p-4 rounded col-2';
     } else {
-        $result.className = 'failure';
+        $result.className = 'bg-danger p-4 rounded col-2';
     }
 
     return true;
