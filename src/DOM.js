@@ -3,7 +3,6 @@
  */
 
 import { coinAPI } from './coinAPI.js';
-// import { render } from './render.js';
 
 /**
  * nodes
@@ -102,9 +101,9 @@ function renderResultInfo() {
     $profitability.textContent = state.profitability;
 
     if (isIncrease()) {
-        $result.className = 'bg-success p-4 rounded col-2';
+        $result.className += ' bg-success';
     } else {
-        $result.className = 'bg-danger p-4 rounded col-2';
+        $result.className += ' bg-danger';
     }
 
     return true;
@@ -170,13 +169,13 @@ function getImgData(coinData) {
 }
 
 function renderStartPrice() {
-    $startPrice.textContent = `${state.price.start.toFixed(5)}`;
+    $startPrice.textContent = `${state.price.start.toFixed(5)}$`;
 
     return true;
 }
 
 function renderEndPrice() {
-    $endPrice.textContent = `${state.price.end.toFixed(5)}`;
+    $endPrice.textContent = `${state.price.end.toFixed(5)}$`;
 
     return true;
 }
