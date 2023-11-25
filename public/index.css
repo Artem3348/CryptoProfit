@@ -9,10 +9,6 @@ img {
     filter: grayscale(100%);
 }
 
-button {
-    min-width: 100px;
-}
-
 #amount {
     min-width: 120px;
 }
