@@ -120,10 +120,20 @@ function checkAmount() {
 
 function getCorrectFormatDate(date) {
     date = new Date(date);
-    const result = date.getFullYear() + '-' 
-        + date.getMonth() + '-'
-        + date.getDate();
+    
+    const years = date.getFullYear();
+    let months = date.getMonth();
+    let days = date.getDate();
 
+    if (days < 10) {
+        days = `0${days}`;
+    }
+    if (months < 10) {
+        months = `0${months}`;
+    }
+
+    const result = `${years}-${months}-${days}`;
+    
     return result;
 }
 
