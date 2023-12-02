@@ -7,59 +7,61 @@
     </head>
 
     <body>
-        <div class="container">
-            <nav class="navbar mt-3 mb-5">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">
-                    <h1>🐸 CryptoProfit</h1>
-                  </a>
-                </div>
-            </nav>
-
-            <label for="start" class="mb-3">start</label>
-            <div class="row">
-                <div class="mb-5 w-auto d-flex flex-row align-items-center">
-                    <input type="date" id="start" class="p-1 form-control">
-                    <span id="startPrice" class="ms-3"></span>
-                </div>
-            </div>
-            
-            <label for="end" class="mb-3">end</label>
-            <div class="row">
-                <div class="mb-5 w-auto d-flex flex-row align-items-center">
-                    <input type="date" id="end" class="p-1 form-control">
-                    <span id="endPrice" class="ms-3"></span>
-                </div>
-            </div>
-            
-            <label for="coin" class="mb-3">coin</label>
-            <div class="row">
-                <div class="mb-5 w-auto d-flex flex-row align-items-center">
-                    <select class="form-select form-select-sm w-auto" id="coin"> 
-                        <option>-</option>
-                    </select>
-                    <a id="coinUrl" class="ms-3" target="_blank">
-                        <img id="coinIcon">
+        <div class="container-fluid bg-light">
+            <div class="container d-flex justify-content-center">
+                <nav class="navbar mt-3 mb-5">
+                    <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <h1>🐸 CryptoProfit</h1>
                     </a>
-                </div>
+                    </div>
+                </nav>
             </div>
+        </div>
 
-            <label for="amount" class="mb-3">amount</label>
+        <div class="container">
             <div class="row">
-                <div class="col-1 mb-5">
+                <div class="col-lg-3 mb-5">
+                    <label for="start" class="mb-3">start</label>
+                    <div class="w-auto d-flex flex-row align-items-center">
+                        <input type="date" id="start" class="p-1 form-control">
+                        <span id="startPrice" class="ms-3"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-5">
+                    <label for="end" class="mb-3">end</label>
+                    <div class="w-auto d-flex flex-row align-items-center">
+                        <input type="date" id="end" class="p-1 form-control">
+                        <span id="endPrice" class="ms-3"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 mb-5">
+                    <label for="coin" class="mb-3">coin</label>
+                    <div class="d-flex flex-row align-items-center">
+                        <select class="form-select form-select-sm" id="coin"> 
+                            <option>-</option>
+                        </select>
+                        <a id="coinUrl" class="ms-3" target="_blank">
+                            <img id="coinIcon">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-5">
+                    <label for="amount" class="mb-3">amount</label>
                     <input id="amount" type="number" class="form-control form-select-sm" placeholder="0.0000001" aria-label="Amount">
                 </div>
             </div>
 
             <div class="mb-5">
-                <button class="btn btn-primary col-md-2">Check</button>
+                <button class="btn btn-primary btn-lg col-12">Check</button>
             </div>
 
-            <div class="row">
-                <div id="result" class="rounded w-auto px-5 ms-2 pt-4 pb-2 d-flex flex-column justify-content-center align-items-center">
-                    <h2 id="netProfit"></h2>
-                    <p id="profitability"></p>
-                </div>
+            <div id="result" class="rounded px-5 pt-4 pb-2 d-flex flex-column justify-content-center align-items-center">
+                <h2 id="netProfit"></h2>
+                <p id="profitability"></p>
             </div>
         </div>
     </body>
