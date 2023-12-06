@@ -13,3 +13,11 @@ img {
 #end {
     min-width: 120px;
 }
+
+.success {
+    background-color: #1fd687a3;
+}
+
+.failure {
+    background-color: #e10d0daa;
+}

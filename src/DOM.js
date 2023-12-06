@@ -59,6 +59,9 @@ function renderList(list) {
     list.forEach(name => {
         const $newOption = new Option(name, name);
         $coin.append($newOption);
+        if ($newOption.textContent === 'Bitcoin') {
+            $newOption.setAttribute('selected', 'selected');
+        }
     });
 }
 
@@ -101,9 +104,11 @@ function renderResultInfo() {
     $profitability.textContent = state.profitability;
 
     if (isIncrease()) {
-        $result.className += ' bg-success';
+        $result.classList.add('success');
+        $result.classList.remove('failure');
     } else {
-        $result.className += ' bg-danger';
+        $result.classList.add('failure');
+        $result.classList.remove('success');
     }
 
     return true;

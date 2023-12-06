@@ -1,44 +1,41 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="index.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://devope-teach.github.io/assets/design.js"></script>
+        <link rel="stylesheet" href="index.css">
     </head>
 
     <body>
         <div class="container-fluid bg-light">
             <div class="container d-flex justify-content-center">
-                <nav class="navbar mt-3 mb-5">
+                <nav class="navbar my-3">
                     <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <h1>🐸 CryptoProfit</h1>
-                    </a>
+                        <a class="navbar-brand" href="#"><b>🐸 CryptoProfit</b></a>
                     </div>
                 </nav>
             </div>
         </div>
 
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
-                <div class="col-lg-3 mb-5">
-                    <label for="start" class="mb-3">start</label>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <label for="start" class="mb-3">Start</label>
                     <div class="w-auto d-flex flex-row align-items-center">
                         <input type="date" id="start" class="p-1 form-control">
                         <span id="startPrice" class="ms-3"></span>
                     </div>
                 </div>
 
-                <div class="col-lg-3 mb-5">
-                    <label for="end" class="mb-3">end</label>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <label for="end" class="mb-3">End</label>
                     <div class="w-auto d-flex flex-row align-items-center">
                         <input type="date" id="end" class="p-1 form-control">
                         <span id="endPrice" class="ms-3"></span>
                     </div>
                 </div>
                 
-                <div class="col-lg-3 mb-5">
-                    <label for="coin" class="mb-3">coin</label>
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <label for="coin" class="mb-3">Coin</label>
                     <div class="d-flex flex-row align-items-center">
                         <select class="form-select form-select-sm" id="coin"> 
                             <option>-</option>
@@ -49,9 +46,9 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 mb-5">
-                    <label for="amount" class="mb-3">amount</label>
-                    <input id="amount" type="number" class="form-control form-select-sm" placeholder="0.0000001" aria-label="Amount">
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <label for="amount" class="mb-3">Amount</label>
+                    <input id="amount" type="number" value="1" class="form-control form-select-sm" placeholder="0.0000001" aria-label="Amount">
                 </div>
             </div>
 
