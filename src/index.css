@@ -1,0 +1,23 @@
+/**
+ * Project specific
+ */
+
+/* Icon for currency */
+img { 
+    vertical-align: middle;
+    -webkit-filter: grayscale(100%); 
+    filter: grayscale(100%);
+}
+
+#start,
+#end {
+    min-width: 120px;
+}
+
+.success {
+    background-color: #1fd687a3;
+}
+
+.failure {
+    background-color: #e10d0daa;
+}
